@@ -63,6 +63,16 @@ namespace ProgettoSettimanale1_Contribuente
             Console.WriteLine("Inserisci il tuo codice fiscale:");
             CodiceFiscale = Console.ReadLine();
 
+            /* if (CodiceFiscale.Length != 16)
+            {
+                Console.WriteLine("Controllare Codice Fiscale - Non è possibile registrare l'utente");
+                Logout();
+            }
+            else
+            {
+                return;
+            */
+
             Console.WriteLine("Come ti identifichi? (M/F/Altro)");
             Sesso = Console.ReadLine();
 
@@ -87,13 +97,14 @@ namespace ProgettoSettimanale1_Contribuente
                 IsLogged = true;
                 DataOraLog = DateTime.Now;
                 Console.WriteLine($"Utente correttamente loggato in data {DataOraLog.ToShortDateString()} alle ore {DataOraLog.ToShortTimeString()}");
+                Console.WriteLine(" ");
                 Console.WriteLine("CALCOLO DELL’IMPOSTA DA VERSARE:");
                 Console.WriteLine($"Contribuente: {Nome} {Cognome}");
                 Console.WriteLine($"Nato/a: {DataNascita} ({Sesso}) ");
                 Console.WriteLine($"Residente in: {ComuneResidenza}");
                 Console.WriteLine($"Codice Fiscale: {CodiceFiscale}");
-                Console.WriteLine($"Reddito Dichiarato: {RedditoAnnuale} ");
-                Console.WriteLine($"IMPOSTA DA VERSARE: {ImpostaVersamento} ");
+                Console.WriteLine($"Reddito Dichiarato: {RedditoAnnuale}  € ");
+                Console.WriteLine($"IMPOSTA DA VERSARE: {ImpostaVersamento}  €");
 
                 UsersLogged users = new UsersLogged() { Username = User.Nome, Surname = User.Cognome, Imposta = ImpostaVersamento, DateTimeLogged = DataOraLog };
                 ListAccessi.users.Add(users);
@@ -105,7 +116,7 @@ namespace ProgettoSettimanale1_Contribuente
 
         }
 
-       /*  IN CASO VOLESSIMO IMPLEMENTARE IL LOGOUT
+       
        public static void Logout()
         {
             Nome = "";
@@ -118,7 +129,6 @@ namespace ProgettoSettimanale1_Contribuente
             IsLogged = false;
             Console.WriteLine("Nessun utente loggato al sistema");
         }
-       */
 
         public static void StampaDataEOraLogin()
         {
